@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/util
+	http://www.springframework.org/schema/util/spring-util.xsd">
+	<!-- 所有配置文件介绍都会转到相关配置文件之中 -->
+	<!-- 按照命名规则引入spring配置文件 有多少引多少，动态一站式导入 -->
+	<import resource="classpath*:spring-*.xml" />
+	<!-- <import resource="spring-shiro.xml"/> -->
+	<!-- spring-timer这个文件在存在springmvc容器的情况下在spring直接配置可能会导致重复运行，请配置在springmvc中 -->
+	<!--<import resource="spring-timer.xml"/> -->
+	<!-- 激活自动代理 -->
+	<aop:aspectj-autoproxy proxy-target-class="true" expose-proxy="true"/>
+	<context:component-scan base-package="com.test.foo">
+		<context:include-filter type="annotation" expression="com.test.foo.annotation.Aop"/>
+	</context:component-scan>
+</beans>
+<!-- 
+ -->
